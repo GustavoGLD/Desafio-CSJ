@@ -1,22 +1,36 @@
 #include <iostream>
+#include <math.h>
+#include <vector>
+
+using namespace std;
+
+int inverterNumero(int n);
 
 int main() {
-  int n = 1234;
+  int n;
+  cin >> n;
 
-  int unidade = n % 10; // 4
-  int dezena = n % 100 - unidade; //30 = 34 - 4
-  int centena = n % 1000 - dezena - unidade; //200 = 234 - 30 - 4
-  int milhar = n % 10000 - centena - dezena - unidade; //1000 = 1234 - 200 - 30 - 4
-
-  unidade *= 1000; //1000 porque é milhar
-  dezena *= 10; //10 = 1000 / 100^1
-  centena *= 0.1; //0.1 = 1000 / 100^2
-  milhar *= 0.001; //0.001 = 1000 / 100^3
-
-  std::cout << unidade << "\n";
-  std::cout << dezena << "\n";
-  std::cout << centena << "\n";
-  std::cout << milhar << "\n";
+  cout << inverterNumero(n) << endl;
 
   return 0;
+}
+
+int inverterNumero(int n){
+  int grandeza;
+  vector<int> algorismos;
+
+  for (grandeza = 1;grandeza < n;){
+    grandeza *= 10;
+    algorismos.push_back(((n % grandeza) / (grandeza/10)) * (grandeza/10));
+  }
+
+  grandeza /= 10;
+  int nFinal = 0;
+
+  for (int x = 0; x < algorismos.size(); x++){
+    algorismos[x] *= grandeza / pow(100, x);
+    nFinal += algorismos[x];
+  }
+
+  return nFinal;
 }
