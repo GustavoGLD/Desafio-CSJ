@@ -48,7 +48,7 @@ int inverterNumero(int n){
   grandeza /= 10;
 
   //`nFinal` será o `n` invertido.
-  int nFinal;
+  int nFinal = 0;
 
   //Agora que inverteremos os algorismos. Corrigir a ordem de grandeza de cada um
   //Ex.: 1234 foi decomposto, no vetor `algorismos` em {1000, 200, 30, 4}
